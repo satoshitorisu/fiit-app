@@ -1,0 +1,78 @@
+<%= nested_form_for(@trainingmenu) do |form| %>
+
+
+  <% if trainingmenu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(trainingmenu.errors.count, "error") %> prohibited this trainingmenu from being saved:</h2>
+      <ul>
+      <% trainingmenu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <h2>
+    <%= form.label :日付 %>
+  </h2>
+    <%= form.date_field :date ,{required: 'true', placeholder: "" ,value: Date.today, class:'form-control'}%>
+
+    <%#= hidden_field_tag :user_id, params[:id] %>
+
+    <!-- <span class="" style="visibility: hidden;"> -->
+    <%#= form.text_field :user_id, value: "1" %>
+    <%#= form.hidden_field :user_id, 1 %>
+    <%= form.hidden_field :user_id, :value => 1 %>
+    <!-- </span> -->
+
+  </div>
+<br>
+<br>
+<h2>アイテム</h2>
+
+
+
+<!-- <div class="table-responsive"> -->
+  <table class="table table-md">
+    <thead>
+      <tr>
+        <th class="text-center">アイテム名</th>
+        <th class="text-center">重量</th>
+        <th class="text-center">回数</th>
+        <th class="text-center">セット数</th>
+        <th class="text-center">前回実績</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= form.fields_for :trainingactuals do |actual_form| %>
+        <%# @trainingitems.each do |trainingitem| %>
+          <td class="text-center">
+          <span class="" style="visibility: hidden;">
+            <%= actual_form.number_field :trainingitem_id %>
+          </span>
+            <%#= actual_form.number_field :trainingname ,{autofocus: 'true', placeholder: "", class: 'form-control text-center', value: params[:trainingname]} %>
+            <%= actual_form.text_field :trainingname , {readonly: 'true'} %>
+            </td>
+
+          <%#= binding.pry %>
+
+
+          <td class="text-center"><%= actual_form.number_field :weight ,{step: '0.1', autofocus: 'true', placeholder: "", class: 'form-control text-center'} %></td>
+          <td class="text-center"><%= actual_form.number_field :time ,{autofocus: 'true', placeholder: "", class: 'form-control text-center'} %></td>
+          <td class="text-center"><%= actual_form.number_field :sets ,{autofocus: 'true', placeholder: "", class: 'form-control text-center'} %></td>
+
+          <td class="text-center">XXkg/XX回/XXセット</td>
+        </tr>
+        <%# end %>
+      <% end %>
+    </tbody>
+  </table>
+<!-- </div> -->
+
+<%#= form.link_to_add "アイテムを追加", :trainingactuals ,class:"btn btn-success" %>
+<hr>
+<div class="actions">
+  <%= form.submit "メニューを作成する" ,class:"form-control btn btn-primary" %>
+  </div>
+<% end %>

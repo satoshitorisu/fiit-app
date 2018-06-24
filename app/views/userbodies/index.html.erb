@@ -1,0 +1,31 @@
+k<p id="notice"><%= notice %></p>
+
+<h1>Userbodies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Weight</th>
+      <th>Bodyfat</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @userbodies.each do |userbody| %>
+      <tr>
+        <td><%= userbody.date %></td>
+        <td><%= userbody.weight %></td>
+        <td><%= userbody.bodyfat %></td>
+        <td><%= link_to 'Show', userbody %></td>
+        <td><%= link_to 'Edit', edit_userbody_path(userbody) %></td>
+        <td><%= link_to 'Destroy', userbody, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Userbody', new_userbody_path %>

@@ -1,0 +1,96 @@
+<p id="notice"><%= notice %></p>
+
+
+<%#= link_to 'Edit', edit_userbody_path(@userbody) %> 
+<%#= link_to 'Back', userbodies_path %>
+
+
+<h2>Section title</h2>
+ <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+
+
+<br>
+<br>
+
+<h2>Section title</h2>
+<div class="table-responsive">
+  <table class="table table-md">
+    <thead>
+      <tr>
+        <th class="text-center">日付</th>
+        <th class="text-center">体重</th>
+        <th class="text-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+			<% @weights.each do |weight| %>
+	      <tr>
+					<td class="text-center"><%= weight.date.strftime("%Y/%m/%d") %></td>
+					<td class="text-center"><%= weight.weightactual %></td>
+	        <td class="text-center">edit</td>
+	      </tr>
+			<% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- 追加箇所開始 -->
+<%= paginate @weights %>
+<!-- 追加箇所終了 -->
+
+
+
+    <%= form_for @weight, :url => {:action => 'create'} do |f| %>
+	<div class="row">
+		<div class="col-md-6 col-sm-12 ">
+
+      <%= f.label :日付 %>
+			<%= f.date_field :date ,{required: 'true', placeholder: "" ,value: Date.today, class:'form-control'}%>
+		</div>
+		<br>
+		<div class="col-md-6 col-sm-12 ">
+      <%= f.label :体重（実績） %>
+      <%= f.number_field :weightactual ,{placeholder: "" , class:'form-control'}%>
+    </div>
+    <br>
+    <br>
+    <%= f.submit "登録する", class: "btn btn-primary form-control" %>
+	</div>
+<% end %>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script>
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [<%= Date.today %>, "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      datasets: [{
+        data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+        lineTension: 0,
+        backgroundColor: 'transparent',
+        borderColor: '#007bff',
+        borderWidth: 2,
+        pointBackgroundColor: '#007bff'
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      },
+      legend: {
+        display: false,
+      }
+    }
+  });
+</script>
+
+

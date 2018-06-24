@@ -1,0 +1,98 @@
+<p id="notice"><%= notice %></p>
+<h1>aaa</h1>
+
+<%#= @result %>
+
+<div class="horizontal_scroll_wrap">
+   <ul class="scroll_lst">
+ <!--       <li class="scroll_item">
+           <a href="" class="scroll_item_inr">
+               <div class="scroll_item_thum">
+
+ -->
+
+<div class="table-responsive">
+  <table class="table table-md">
+    <thead>
+      <tr>
+			<% @result.each do |result| %>
+	      <th class="text-center">
+          <% if result[0].instance_of?(Date) %>
+            <%= result[0].strftime("%m/%d")%>(<%= @week[result[0].wday] %>)
+          <% end %>
+
+
+          </th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <%= for i in 1..@result[0].length do %>
+	      <tr>
+					<% @result.each do |result| %>
+				      <td class="text-center">
+                <% if result[i].instance_of?(Array) %>
+                  <% if !result[i][0].nil?  %>
+                    <%= result[i][0] %>kg/
+                    <%= result[i][1] %>回/
+                    <%= result[i][2] %>セット
+                    <% else %>
+                    -
+                  <% end %>
+                  <% else %>
+                <%= result[i] %>
+
+                <% end %>
+
+            </td>
+					<% end %>
+	      </tr>
+	  <% end %>
+ 
+
+</ul>
+</div>
+
+
+    </tbody>
+  </table>
+</div>
+
+<%= link_to 'メニュー作成', create_new_menu_path(params[:id]), class:"btn btn btn-primary form-control btn-lg text-white" %>
+
+
+<style type="text/css" media="screen">
+  
+  .horizontal_scroll_wrap{
+    background: #f1f1f1;
+    /*height: 400px;*/
+    overflow-y: hidden;
+    margin: 0 -10px;
+}
+.scroll_lst {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 50px;
+    margin: 25px 0 0;
+    -webkit-overflow-scrolling: touch;
+}
+.scroll_item {
+    margin-right: 10px;
+    display: inline-block;
+    width: 220px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+.scroll_item:first-child {
+    margin-left: 10px;
+}
+ 
+.scroll_item_inr {
+    display: block;
+}
+.scroll_item_info {
+    white-space: normal;
+    padding: 8px;
+}
+</style>

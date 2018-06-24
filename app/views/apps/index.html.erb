@@ -1,0 +1,7 @@
+<% if trainer_signed_in? %>
+  <%= render 'trainer' %>
+<% elsif user_signed_in? %>
+  <%= render 'user' %>
+<% else %>
+  <%= render 'visitor' %>
+<% end %>

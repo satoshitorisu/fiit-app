@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Trainingitems</h1>
+
+<table class="table table-md">
+  <thead>
+    <tr>
+      <th class="text-center">アイテム名</th>
+      <th class="text-center"></th>
+      <th class="text-center">詳細</th>
+      <th class="text-center"></th>
+      <th class="text-center"></th>
+      <!-- <th colspan="3"></th> -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trainingitems.each do |trainingitem| %>
+      <tr>
+        <td class="text-center"><%= trainingitem.name %></td>
+        
+        <td class="text-center"></td>
+        <td class="text-center"><%= trainingitem.description %></td>
+        <td class="text-center"></td>
+        <td class="text-center"><%= link_to '詳細', trainingitem ,class:"btn btn-primary text-white" %>
+        <%= link_to '編集', edit_trainingitem_path(trainingitem) ,class:"btn btn-success text-white" %>
+        <%= link_to '削除', trainingitem, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-danger text-white" %></td>
+      </tr>
+    <% end %>
+
+
+  </tbody>
+
+
+
+</table>
+
+
+
+
+
+<br>
+
+<%= link_to 'New Trainingitem', new_trainingitem_path %>

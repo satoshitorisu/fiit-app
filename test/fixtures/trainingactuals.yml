@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trainingmenu: one
+  trainingitem: one
+  time: 1
+  status: false
+
+two:
+  trainingmenu: two
+  trainingitem: two
+  time: 1
+  status: false
