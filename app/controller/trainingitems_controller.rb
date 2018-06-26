@@ -70,6 +70,6 @@ class TrainingitemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trainingitem_params
-      params.require(:trainingitem).permit(:name, :description, :status, :trainer_id)
+      params.require(:trainingitem).permit(:name, :description, :part, :trainer_id)
     end
 end

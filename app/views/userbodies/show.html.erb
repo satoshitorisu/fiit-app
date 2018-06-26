@@ -5,14 +5,30 @@
 <%#= link_to 'Back', userbodies_path %>
 
 
-<h2>Section title</h2>
- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-
+<h1>体重データ</h1>
+<div class="row pb-4 mt-4">
+  <div class="col-6 text-center">
+    <h3>体重</h3>
+    <h2><%= @weight_latest.weightactual %>kg</h2>
+    <small>(<%= @weight_latest.date %>時点)</small>
+  </div>
+  <div class="col-6 text-center">
+    <h3>目標まで</h3>
+    <h2><%= @weight_latest.weightactual %>kg</h2>
+  </div>
+</div>
+<hr>
+<h1>体重推移</h1>
+  <%= line_chart @chart_data, 
+    height: "600px" ,
+    min: "#{@min}",
+    max:"#{@max}",
+    :library => {
+      :vAxis => {:title => "体重(kg)"}, 
+      :hAxis => {:title => "日付"}, 
+    } %>
 <br>
-<br>
 
-<h2>Section title</h2>
 <div class="table-responsive">
   <table class="table table-md">
     <thead>
@@ -35,30 +51,60 @@
 </div>
 
 <!-- 追加箇所開始 -->
-<%= paginate @weights %>
+<div class="text-center">
+<%= paginate @weights ,class:"text-center" %>
+  
+</div>
 <!-- 追加箇所終了 -->
 
 
+<hr>
+<h1>トレーニング実績</h1>
 
-    <%= form_for @weight, :url => {:action => 'create'} do |f| %>
+<!--     <%#= form_for @weight, :url => {:action => 'create'} do |f| %>
 	<div class="row">
 		<div class="col-md-6 col-sm-12 ">
 
-      <%= f.label :日付 %>
-			<%= f.date_field :date ,{required: 'true', placeholder: "" ,value: Date.today, class:'form-control'}%>
+      <%#= f.label :日付 %>
+			<%#= f.date_field :date ,{required: 'true', placeholder: "" ,value: Date.today, class:'form-control'}%>
 		</div>
 		<br>
 		<div class="col-md-6 col-sm-12 ">
-      <%= f.label :体重（実績） %>
-      <%= f.number_field :weightactual ,{placeholder: "" , class:'form-control'}%>
+      <%#= f.label :体重（実績） %>
+      <%#= f.number_field :weightactual ,{placeholder: "" , class:'form-control'}%>
     </div>
     <br>
     <br>
-    <%= f.submit "登録する", class: "btn btn-primary form-control" %>
+    <%#= f.submit "登録する", class: "btn btn-primary form-control" %>
 	</div>
-<% end %>
+<%# end %>
+ -->
 
 
+
+<div class="table-responsive">
+  <table class="table table-md">
+    <thead>
+      <tr>
+        <th class="text-center">メニュー</th>
+        <th class="text-center">今週</th>
+        <th class="text-center">今月</th>
+        <th class="text-center">全期間</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @weights.each do |weight| %>
+        <tr>
+          <td class="text-center">XXX</td>
+          <td class="text-center">XXX</td>
+          <td class="text-center">XXX</td>
+          <td class="text-center">XXX</td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 
 

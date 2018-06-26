@@ -4,7 +4,6 @@
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
 <br>
-<hr>
   <%= link_to "登録されていない方はこちら", new_registration_path(resource_name) %><br />
   <br>
 <% end -%>

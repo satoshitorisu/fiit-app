@@ -36,7 +36,10 @@
     <%#= current_trainer.id %>
     <%#= hidden_field_tag :trainer_id, current_trainer.id %>
     <%#= hidden_field :trainer_id, current_trainer.id %>
-    <%= f.text_field :trainer_id, vaule: current_trainer.id %>
+    <%#= f.text_field :trainer_id, vaule: current_trainer.id %>
+    <%= f.hidden_field :trainer_id, :value => current_trainer.id %>
+    
+
   </div>
 
   <div class="actions">

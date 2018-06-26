@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_114531) do
+ActiveRecord::Schema.define(version: 2018_06_24_121739) do
 
   create_table "trainers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2018_05_30_114531) do
 
   create_table "trainingitems", force: :cascade do |t|
     t.string "name"
+    t.string "part"
     t.text "description"
-    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "trainer_id"
@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(version: 2018_05_30_114531) do
 
   create_table "trainingmenus", force: :cascade do |t|
     t.date "date"
+    t.string "menu"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "task"
     t.integer "user_id"
     t.index ["user_id"], name: "index_trainingmenus_on_user_id"
   end
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 2018_05_30_114531) do
     t.string "last_name_kana"
     t.string "image_id"
     t.date "birth_date"
+    t.float "goalweight"
+    t.date "goaldate"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["trainer_id"], name: "index_users_on_trainer_id"

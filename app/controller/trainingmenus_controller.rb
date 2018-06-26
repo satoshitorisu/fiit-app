@@ -10,49 +10,42 @@ class TrainingmenusController < ApplicationController
   # GET /trainingmenus/1
   # GET /trainingmenus/1.json
   def show
+
+    @result = []
+    @week = %w[日 月 火 水 木 金 土]
+
     @trainingmenus = Trainingmenu.where(user_id: params[:id])
-    # debugger
-
-
     unless Trainingitem.where(trainer_id: current_trainer.id)#.unshift("")
       @trainingitems = Trainingitem.where(trainer_id: current_trainer.id).pluck(:id)
     end
 
+    # 14.times {|num|
+    #   @temp = []
 
-    @week = %w[日 月 火 水 木 金 土]
-    # @trainingactuals = Trainingactual.where(user_id: params[:id])
-    # debugger
-    # @menu_trainingitems = [][]
+    #   trainingdate = Date.today - num + 4
+    #   @temp << trainingdate
 
-    @temp = []
-    @result = []
+    #    if @trainingmenus.find_by(user_id: params[:id]).present?
 
-    14.times {|num|
-      @temp = []
-      trainingdate = Date.today - num + 4
-      @temp << trainingdate
-      # debugger
+    #       # @trainingtemp = @trainingmenus.find_by(date: trainingdate).trainingactuals
 
-       if @trainingmenus.find_by(user_id: params[:id]).present?
-          @trainingtemp = @trainingmenus.find_by(date: trainingdate).trainingactuals
+    #       @trainingitems.each do |items|
 
-          @trainingitems.each do |items|
+    #         if @trainingtemp.find_by(trainingitem_id: items ).present?
+    #           @temp << [@trainingtemp.find_by(trainingitem_id: items).weight,
+    #                     @trainingtemp.find_by(trainingitem_id: items).time,
+    #                     @trainingtemp.find_by(trainingitem_id: items).sets]
+    #         else
+    #           @temp << ["","",""]
+    #         end
+    #       end
+    #    end
 
-            if @trainingtemp.find_by(trainingitem_id: items ).present?
-              @temp << [@trainingtemp.find_by(trainingitem_id: items).weight,
-                        @trainingtemp.find_by(trainingitem_id: items).time,
-                        @trainingtemp.find_by(trainingitem_id: items).sets]
-            else
-              @temp << ["","",""]
-            end
-          end
-       end
+    #  @result << @temp
+    # }
 
-     @result << @temp
-    }
-
-    @trainingitems.unshift("")
-    @result.unshift(@trainingitems)
+    # @trainingitems.unshift("")
+    # @result.unshift(@trainingitems)
     # debugger
 
   end

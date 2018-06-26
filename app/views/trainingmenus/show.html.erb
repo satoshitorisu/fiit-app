@@ -5,12 +5,6 @@
 
 <div class="horizontal_scroll_wrap">
    <ul class="scroll_lst">
- <!--       <li class="scroll_item">
-           <a href="" class="scroll_item_inr">
-               <div class="scroll_item_thum">
-
- -->
-
 <div class="table-responsive">
   <table class="table table-md">
     <thead>
@@ -20,34 +14,32 @@
           <% if result[0].instance_of?(Date) %>
             <%= result[0].strftime("%m/%d")%>(<%= @week[result[0].wday] %>)
           <% end %>
-
-
           </th>
       <% end %>
     </tr>
     </thead>
     <tbody>
-    <%= for i in 1..@result[0].length do %>
+    <%#= for i in 1..@result[0].length do %>
 	      <tr>
-					<% @result.each do |result| %>
+					<%# @result.each do |result| %>
 				      <td class="text-center">
-                <% if result[i].instance_of?(Array) %>
-                  <% if !result[i][0].nil?  %>
-                    <%= result[i][0] %>kg/
-                    <%= result[i][1] %>回/
-                    <%= result[i][2] %>セット
-                    <% else %>
+                <%# if result[i].instance_of?(Array) %>
+                  <%# if !result[i][0].nil?  %>
+                    <%#= result[i][0] %>kg/
+                    <%#= result[i][1] %>回/
+                    <%#= result[i][2] %>セット
+                    <%# else %>
                     -
-                  <% end %>
-                  <% else %>
-                <%= result[i] %>
+                  <%# end %>
+                  <%# else %>
+                <%#= result[i] %>
 
-                <% end %>
+                <%# end %>
 
             </td>
-					<% end %>
+					<%# end %>
 	      </tr>
-	  <% end %>
+	  <%# end %>
  
 
 </ul>

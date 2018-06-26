@@ -10,9 +10,32 @@ class UserbodiesController < ApplicationController
   # GET /userbodies/1
   # GET /userbodies/1.json
   def show
-    @weights = Weight.where(user_id: params[:id]).order('date DESC').page(params[:weight]).per(10)
-
+    @weights = Weight.where(user_id: params[:id]).order('date DESC').page(params[:weight]).per(4)
+    @weight_latest = Weight.where(user_id: params[:id]).order('date DESC').first
     # @shops = Shop.page(params[:page])
+    # @goalweight = User.where(user_id: params[:id]).order('date DESC').page(params[:weight]).per(10)
+    
+
+    #体重遷移グラフ情報
+    @max = @weight_latest.weightactual + 12
+    @min = @weight_latest.weightactual - 12
+
+    @chart_data = []
+      @weights.limit(7).each do |weight|
+          val1 = weight.date.strftime("%m/%d")
+          val2 = weight.weightactual
+          @chart_data << [val1, val2]
+      end
+
+
+    #トレーニング実績
+    #今週
+
+    #月次
+    
+
+    #全期間
+
     @weight =Weight.new
   end
 

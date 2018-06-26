@@ -1,51 +1,74 @@
-  <!-- <h1>aaa</h1> -->
-   <div class="nav-scroller bg-white box-shadow">
-    <!-- <nav class="nav nav-underline"> -->
-      <!-- <div class="col-6"> -->
-        <!-- <a class="nav-link form-control text-center" href="#">トレーニングメニュー追加</a> -->
-        <%#= link_to 'アイテム追加', new_trainingitem_path , class:"nav-link form-control text-center btn-lg" %>
-      <!-- </div> -->
-      <!-- <div class="col-6"> -->
-        <%#= link_to 'トレーニー追加', new_user_registration_path , class:"nav-link form-control text-center btn-lg" %>
-      <!-- </div> -->
-    <!-- </nav> -->
-  </div>
   <main role="main" class="container-fluid">
+
     <div class="my-3 p-3 bg-white rounded box-shadow">
-      <h3 class="border-bottom border-gray pb-2 mb-0">生徒さん情報</h3>
+      <% if @user_present %>
+        <h3 class="border-bottom border-gray pb-2 mb-0">生徒さん情報</h3>
+        <% @users.each do |user| %>
+          <div class="media text-muted pt-3">
 
-  		<% @users.each do |user| %>
-        <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-3 small lh-125 border-bottom border-gray">
+              <div class="row mb-0">
+                <div class="col-6 text-center">
+                  <img src="https://placehold.jp/200x200.png" class="img-thumbnail mb-4">
+                  <%#= attachment_image_tag user, :image, :fill, 300, 300, format: 'jpeg' %>
+                  <%#= binding.pry %>
 
-          <div class="media-body pb-3 mb-3 small lh-125 border-bottom border-gray">
-            <div class="row mb-0">
-              <div class="col-6 text-center">
-                <img src="https://placehold.jp/200x200.png" class="img-thumbnail mb-4">
-                <%#= attachment_image_tag user, :image, :fill, 300, 300, format: 'jpeg' %>
-                <%#= binding.pry %>
-
-              </div>
-              <div class="col-6">
-              <div>
-                <ul>
-                  <li><%= user.email %></li>
-                  <li><%= user.first_name %> <%= user.last_name %></li>
-                  <li>最終ログイン日：<%= user.last_sign_in_at.strftime("%Y/%m/%d") if user.last_sign_in_at.present? %></li>
-                </ul>
-              </div>
-              <div class="col-12 mb-2">
-                <%= link_to 'メニュー管理', trainingmenu_path(user.id), class:"btn btn btn-outline-primary form-control text-primary" %>
-              </div>
-              <div class="col-12 mb-2">
-                <%= link_to 'メニュー作成', create_new_menu_path(user.id), class:"btn btn btn-outline-warning form-control text-warning" %>
-              </div>
-              <div class="col-12">
-                <%= link_to '体重管理', userbody_path(user.id), class:"btn btn btn-outline-secondary form-control text-secondary" %>
-              </div>
+                </div>
+                <div class="col-6">
+                <div>
+                  <ul>
+                    <li><%= user.email %></li>
+                    <li><%= user.first_name %> <%= user.last_name %></li>
+                    <li>最終ログイン日：<%= user.last_sign_in_at.strftime("%Y/%m/%d") if user.last_sign_in_at.present? %></li>
+                  </ul>
+                </div>
+                <div class="col-12 mb-2">
+                  <%= link_to 'メニュー作成', create_new_menu_path(user.id), class:"btn btn btn-outline-warning form-control text-warning" %>
+                </div>
+                <div class="col-12 mb-2">
+                  <%= link_to 'メニュー管理', trainingmenu_path(user.id), class:"btn btn btn-outline-primary form-control text-primary" %>
+                </div>
+                <div class="col-12">
+                  <%= link_to '体重管理', userbody_path(user.id), class:"btn btn btn-outline-secondary form-control text-secondary" %>
+                </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-     	<% end %>
+        <% end %>
+          <div class="col-12 mb-2 mt-4 mb-4">
+            <%= link_to 'トレーニングアイテム追加', new_trainingitem_path, class:"btn mt-4 mb-4 btn-secondary form-control text-white btn-lg" %>
+          </div>
+
+
+
+      <% else %>
+        <h1 class="border-bottom border-gray pb-2 mb-0 text-center">生徒さん登録</h1>
+
+          <div class="col-12 mb-2 mt-4 mb-4">
+            <%= link_to 'トレーニー追加', new_user_registration_path, class:"btn mt-4 mb-4 btn-danger form-control text-white btn-lg" %>
+          </div>
+        <hr>
+        <h1 class="mt-4 mb-4 text-center">Fiitの機能</h1>
+
+        <h2 class="border-bottom border-gray pb-2 mt-4 mb-4">メニュー管理</h2>
+
+        <h2 class="border-bottom border-gray pb-2 mt-4 mb-4">体重管理</h2>
+
+        <h2 class="border-bottom border-gray pb-2 mt-4 mb-4">トレーニング効果可視化</h2>
+
+
+          <div class="col-12 mb-2 mt-4 mb-4">
+            <%= link_to 'トレーニー追加', root_path, class:"btn mt-4 mb-4 btn-danger form-control text-white btn-lg" %>
+          </div>
+
+
+
+
+
+
+
+      <% end %>
+
     </div>
   </main>

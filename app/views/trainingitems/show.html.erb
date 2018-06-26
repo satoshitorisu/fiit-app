@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>トレーニング名:</strong>
   <%= @trainingitem.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @trainingitem.description %>
+  <strong>部位:</strong>
+  <%= @trainingitem.part %>
 </p>
 
 <p>
-  <strong>Status:</strong>
-  <%= @trainingitem.status %>
+  <strong>説明文:</strong>
+  <%= @trainingitem.description %>
 </p>
+
 
 <%= link_to 'Edit', edit_trainingitem_path(@trainingitem) %> |
 <%= link_to 'Back', trainingitems_path %>
