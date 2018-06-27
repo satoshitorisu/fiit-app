@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.3.0'
+# ruby '2.3.0'
 
 gem 'rails', '~> 5.2.0'
 gem 'puma', '~> 3.11'
@@ -26,6 +26,8 @@ gem "refile-mini_magick"
 gem "chartkick"
 
 gem "figaro", '~> 1.1.0'
+gem 'rb-readline'
+
 
 
 group :production do
