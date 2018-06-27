@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
+# ruby '2.2.3'
+
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+
  # rials ''
- # ruby '2.4.0'
+ ruby '2.4.0'
 
 gem 'rails', '~> 5.2.0'
 gem 'puma', '~> 3.11'
