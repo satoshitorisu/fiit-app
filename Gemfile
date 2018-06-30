@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 
  # rials ''
- ruby '2.4.0'
+ # ruby '2.4.0'
 
 gem 'rails', '~> 5.2.0'
 gem 'puma', '~> 3.11'
@@ -31,7 +31,6 @@ gem "chartkick"
 
 gem "figaro", '~> 1.1.0'
 gem 'rb-readline'
-
 
 
 group :production do
